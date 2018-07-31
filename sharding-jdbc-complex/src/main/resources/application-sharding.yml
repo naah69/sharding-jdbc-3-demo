@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    druid:
+      url: jdbc:mysql://10.250.250.216:3306/ds0?useUnicode=true&characterEncoding=utf8&useSSL=false
+      driver-class-name: com.mysql.jdbc.Driver
+      username: fsccc
+      password: 123456
+sharding:
+  jdbc:
+    datasource:
+      names: ds0,ds1
+      ds0:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbc-url: jdbc:mysql://10.250.250.216:3306/ds0?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: fsccc
+        password: 123456
+
+      ds1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbc-url: jdbc:mysql://10.250.250.216:3306/ds1?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: fsccc
+        password: 123456
+
+    config:
+      sharding:
+        default-database-strategy:
+          complex:
+            algorithm-class-name: shardingsphere.demo.strategy.NaahComplexKeysShardingAlgorithm
+            sharding-columns: user_id,order_id
+        tables:
+          t_order:
+            actual-data-nodes: ds$->{0..1}.t_order_$->{0..1}
+            table-strategy:
+              complex:
+                algorithm-class-name: shardingsphere.demo.strategy.NaahComplexKeysShardingAlgorithm
+                sharding-columns: user_id,order_id
+            key-generator-column-name: id

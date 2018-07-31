@@ -1,0 +1,16 @@
+logging:
+  level:
+    ROOT: INFO
+    shardingsphere.demo: DEBUG
+    shardingsphere.demo.mapper: debug
+server:
+  port: 8100
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: shardingsphere.demo.entity
+  config-location: classpath:mybatis-config.xml
+
+spring:
+  profiles:
+    active: sharding

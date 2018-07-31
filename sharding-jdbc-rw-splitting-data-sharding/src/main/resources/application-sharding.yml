@@ -1,0 +1,41 @@
+sharding:
+  jdbc:
+    datasource:
+      names: ds0,ds1
+      ds0:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbc-url: jdbc:mysql://10.250.250.116:3306/ds0?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: root
+        password: root
+      ds1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbc-url: jdbc:mysql://10.250.250.116:3306/ds1?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: root
+        password: root
+      ds2:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbc-url: jdbc:mysql://10.250.251.106:3306/ds0?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: root
+        password: root
+      ds3:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        jdbc-url: jdbc:mysql://10.250.251.106:3306/ds1?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: root
+        password: root
+    config:
+      sharding:
+        tables:
+          t_order:
+            key-generator-column-name: id
+        props:
+          sql:
+            show: true
+      masterslave:
+        name: ds_ms
+        master-data-source-name: ds0
+        slave-data-source-names: ds1
+        load-balance-algorithm-type: round_robin
