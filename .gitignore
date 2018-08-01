@@ -1,0 +1,5 @@
+*.iml
+.idea/
+logs/
+target/
+/bot_data/
