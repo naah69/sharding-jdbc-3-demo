@@ -28,9 +28,13 @@ sharding:
         password: root
     config:
       sharding:
+        default-database-strategy:
+          inline:
+            sharding-column: order_id
+            algorithm-expression: ds$->{order_id % 2}
         tables:
           t_order:
-            actual-data-nodes: ds0.t_order_$->{0..1}
+            actual-data-nodes: ds$->{0..1}.t_order_$->{0..1}
             table-strategy:
               inline:
                 sharding-column: user_id
@@ -39,11 +43,18 @@ sharding:
         props:
           sql:
             show: true
-      masterslave:
-        name: ds_1
-        master-data-source-name: ds0
-        slave-data-source-names: ds2,ds3
-        load-balance-algorithm-type: round_robin
+        master-slave-rules:
+          ds0:
+            master-data-source-name: ds0
+            slave-data-source-names: ds2
+          ds1:
+            master-data-source-name: ds1
+            slave-data-source-names: ds3
+#      masterslave:
+#        name: ds_1
+#        master-data-source-name: ds0
+#        slave-data-source-names: ds2,ds3
+#        load-balance-algorithm-type: round_robin
 #      masterslave:
 #        name: ds_2
 #        master-data-source-name: ds1

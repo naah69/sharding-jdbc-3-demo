@@ -14,6 +14,7 @@
         <module>sharding-jdbc-complex</module>
         <module>sharding-jdbc-rw-splitting</module>
         <module>sharding-jdbc-rw-splitting-data-sharding</module>
+        <module>sharding-jdbc-orchestration</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -73,7 +74,21 @@
             <version>${shardingsphere.version}</version>
         </dependency>
 
-         <dependency>
+        <!-- for spring boot -->
+        <dependency>
+            <groupId>io.shardingsphere</groupId>
+            <artifactId>sharding-jdbc-orchestration-spring-boot-starter</artifactId>
+            <version>${shardingsphere.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.shardingsphere</groupId>
+            <artifactId>sharding-jdbc-orchestration-spring</artifactId>
+            <version>${shardingsphere.version}</version>
+            <type>pom</type>
+        </dependency>
+
+
+        <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
             <version>${HikariCP.version}</version>
