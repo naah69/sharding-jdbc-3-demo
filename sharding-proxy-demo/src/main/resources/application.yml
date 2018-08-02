@@ -1,0 +1,42 @@
+logging:
+  level:
+    ROOT: INFO
+    shardingsphere.demo: DEBUG
+    shardingsphere.demo.mapper: debug
+server:
+  port: 8100
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: shardingsphere.demo.entity
+  config-location: classpath:mybatis-config.xml
+
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      url: jdbc:mysql://10.250.250.116:3307/sharding_db
+      driver-class-name: com.mysql.jdbc.Driver
+      username: root
+      password:
+      # 下面为连接池的补充设置，应用到上面所有数据源中
+      initial-size: 5
+      # 初始化大小，最小，最大
+      min-idle: 5
+      max-active: 5000
+      # 配置获取连接等待超时的时间
+      max-wait: 120000
+      use-unfair-lock: true
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 300000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 500
+      validation-query: select 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      remove-abandoned: true
+      # 打开PSCache，并且指定每个连接上PSCache的大小
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 200

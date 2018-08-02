@@ -1,0 +1,7 @@
+#获取镜像
+docker pull shardingsphere/sharding-proxy
+
+#启动镜像，配置见config.yaml，端口映射3307
+docker run -d -v /root/conf/sharding-proxy:/opt/sharding-proxy/conf --name=sharding-proxy  -p 3307:3307 shardingsphere/sharding-proxy:latest
+
+
