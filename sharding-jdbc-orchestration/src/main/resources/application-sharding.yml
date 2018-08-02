@@ -17,6 +17,13 @@ sharding:
         password: 123456
 
     config:
+      orchestration:
+        name: orchestration-sharding-data-source
+        overwrite: true
+        type: sharding
+        zookeeper:
+          namespace: sharding-jdbc-orchestration
+          server-lists: 10.250.250.116:2181
       sharding:
         default-database-strategy:
           inline:
@@ -30,10 +37,3 @@ sharding:
                 sharding-column: user_id
                 algorithm-expression: t_order_$->{user_id % 2}
             key-generator-column-name: id
-      orchestration:
-        name: orchestration-sharding-data-source
-        type: sharding
-        overwrite: true
-        zookeeper:
-          server-lists: 127.0.0.1:2181
-          namespace: sharding-jdbc-orchestration
