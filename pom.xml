@@ -62,11 +62,11 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>io.shardingsphere</groupId>-->
-            <!--<artifactId>sharding-jdbc-spring-boot-starter</artifactId>-->
-            <!--<version>${shardingsphere.version}</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>io.shardingsphere</groupId>
+            <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+            <version>${shardingsphere.version}</version>
+        </dependency>
 
         <!-- for spring namespace -->
         <dependency>
@@ -81,12 +81,7 @@
             <artifactId>sharding-jdbc-orchestration-spring-boot-starter</artifactId>
             <version>${shardingsphere.version}</version>
         </dependency>
-        <dependency>
-            <groupId>io.shardingsphere</groupId>
-            <artifactId>sharding-jdbc-orchestration-spring</artifactId>
-            <version>${shardingsphere.version}</version>
-            <type>pom</type>
-        </dependency>
+
 
 
         <dependency>

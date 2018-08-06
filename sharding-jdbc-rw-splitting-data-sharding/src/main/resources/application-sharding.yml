@@ -17,13 +17,13 @@ sharding:
       ds2:
         type: com.zaxxer.hikari.HikariDataSource
         driver-class-name: com.mysql.jdbc.Driver
-        jdbc-url: jdbc:mysql://10.250.251.106:3306/ds0?useUnicode=true&characterEncoding=utf8&useSSL=false
+        jdbc-url: jdbc:mysql://10.250.250.106:3306/ds0?useUnicode=true&characterEncoding=utf8&useSSL=false
         username: root
         password: root
       ds3:
         type: com.zaxxer.hikari.HikariDataSource
         driver-class-name: com.mysql.jdbc.Driver
-        jdbc-url: jdbc:mysql://10.250.251.106:3306/ds1?useUnicode=true&characterEncoding=utf8&useSSL=false
+        jdbc-url: jdbc:mysql://10.250.250.106:3306/ds1?useUnicode=true&characterEncoding=utf8&useSSL=false
         username: root
         password: root
     config:

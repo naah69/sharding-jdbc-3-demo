@@ -1,11 +1,3 @@
-spring:
-  datasource:
-    type: com.zaxxer.hikari.HikariDataSource
-    druid:
-      url: jdbc:mysql://10.250.250.216:3306/ds0?useUnicode=true&characterEncoding=utf8&useSSL=false
-      driver-class-name: com.mysql.jdbc.Driver
-      username: fsccc
-      password: 123456
 sharding:
   jdbc:
     datasource:
@@ -16,7 +8,6 @@ sharding:
         jdbc-url: jdbc:mysql://10.250.250.216:3306/ds0?useUnicode=true&characterEncoding=utf8&useSSL=false
         username: fsccc
         password: 123456
-
       ds1:
         type: com.zaxxer.hikari.HikariDataSource
         driver-class-name: com.mysql.jdbc.Driver

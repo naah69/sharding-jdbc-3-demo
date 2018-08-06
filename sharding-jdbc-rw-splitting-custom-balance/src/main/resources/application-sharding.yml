@@ -26,5 +26,4 @@ sharding:
         name: ds_ms
         master-data-source-name: ds0
         slave-data-source-names: ds1
-        load-balance-algorithm-type: round_robin
-
+        load-balance-algorithm-class-name: shardingsphere.demo.balance.NewBananceAlgorithm

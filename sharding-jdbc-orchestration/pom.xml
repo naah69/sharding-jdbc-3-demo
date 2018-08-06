@@ -10,6 +10,28 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>sharding-jdbc-orchestration</artifactId>
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.lingsheng.demo</groupId>
+                <artifactId>sharding-sphere</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <exclusions>
+                    <exclusion>
+                            <groupId>io.shardingsphere</groupId>
+                            <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>io.shardingsphere</groupId>
+            <artifactId>sharding-jdbc-orchestration-spring</artifactId>
+            <version>${shardingsphere.version}</version>
+            <type>pom</type>
+        </dependency>
+    </dependencies>
 
 </project>
