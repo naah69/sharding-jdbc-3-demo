@@ -6,6 +6,7 @@ logging:
 server:
   port: 8100
 
+
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: shardingsphere.demo.entity
