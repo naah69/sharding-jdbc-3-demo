@@ -9,12 +9,7 @@
     <packaging>jar</packaging>
 
     <dependencies>
-
-        <!--<dependency>-->
-            <!--<groupId>io.shardingsphere</groupId>-->
-            <!--<artifactId>sharding-jdbc-orchestration-spring-boot-starter</artifactId>-->
-            <!--<version>${shardingsphere.version}</version>-->
-        <!--</dependency>-->
+       <!--引入之前的父项目，并排除依赖-->
         <dependency>
             <groupId>com.lingsheng.demo</groupId>
             <artifactId>sharding-sphere</artifactId>
@@ -24,11 +19,20 @@
                     <groupId>io.shardingsphere</groupId>
                     <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>io.shardingsphere</groupId>
+                    <artifactId>sharding-jdbc-spring-namespace</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
             <groupId>io.shardingsphere</groupId>
             <artifactId>sharding-jdbc-orchestration-spring-boot-starter</artifactId>
+            <version>3.0.0.M1</version>
+        </dependency>
+        <dependency>
+            <groupId>io.shardingsphere</groupId>
+            <artifactId>sharding-jdbc-orchestration-spring-namespace</artifactId>
             <version>3.0.0.M1</version>
         </dependency>
 

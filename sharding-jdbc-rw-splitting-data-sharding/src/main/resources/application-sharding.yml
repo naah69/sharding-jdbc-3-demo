@@ -47,7 +47,9 @@ sharding:
           ds0:
             master-data-source-name: ds0
             slave-data-source-names: ds2
+            load-balance-algorithm-type: round_robin
           ds1:
             master-data-source-name: ds1
             slave-data-source-names: ds3
+            load-balance-algorithm-class-name: shardingsphere.demo.balance.NewBananceAlgorithm
 

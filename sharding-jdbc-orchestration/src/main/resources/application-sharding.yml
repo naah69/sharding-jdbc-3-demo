@@ -1,40 +1,60 @@
 sharding:
   jdbc:
-    datasource:
-      names: ds0,ds1
-      ds0:
-        type: com.zaxxer.hikari.HikariDataSource
-        driver-class-name: com.mysql.jdbc.Driver
-        jdbc-url: jdbc:mysql://10.250.250.216:3306/ds0?useUnicode=true&characterEncoding=utf8&useSSL=false
-        username: fsccc
-        password: 123456
-
-      ds1:
-        type: com.zaxxer.hikari.HikariDataSource
-        driver-class-name: com.mysql.jdbc.Driver
-        jdbc-url: jdbc:mysql://10.250.250.216:3306/ds1?useUnicode=true&characterEncoding=utf8&useSSL=false
-        username: fsccc
-        password: 123456
-
+#    datasource:
+#      names: ds0,ds1,ds2,ds3
+#      ds0:
+#        type: com.zaxxer.hikari.HikariDataSource
+#        driver-class-name: com.mysql.jdbc.Driver
+#        jdbc-url: jdbc:mysql://10.250.250.116:3306/ds0?useUnicode=true&characterEncoding=utf8&useSSL=false
+#        username: root
+#        password: root
+#      ds1:
+#        type: com.zaxxer.hikari.HikariDataSource
+#        driver-class-name: com.mysql.jdbc.Driver
+#        jdbc-url: jdbc:mysql://10.250.250.116:3306/ds1?useUnicode=true&characterEncoding=utf8&useSSL=false
+#        username: root
+#        password: root
+#      ds2:
+#        type: com.zaxxer.hikari.HikariDataSource
+#        driver-class-name: com.mysql.jdbc.Driver
+#        jdbc-url: jdbc:mysql://10.250.250.106:3306/ds0?useUnicode=true&characterEncoding=utf8&useSSL=false
+#        username: root
+#        password: root
+#      ds3:
+#        type: com.zaxxer.hikari.HikariDataSource
+#        driver-class-name: com.mysql.jdbc.Driver
+#        jdbc-url: jdbc:mysql://10.250.250.106:3306/ds1?useUnicode=true&characterEncoding=utf8&useSSL=false
+#        username: root
+#        password: root
     config:
       orchestration:
         name: orchestration-sharding-data-source
 #        控制是否覆盖zookeeper的配置，当为true的时候，每次启动向zk写入，当为false时，每次启动从zk进行读取
-        overwrite: true
+        overwrite: false
         type: sharding
         zookeeper:
           namespace: sharding-jdbc-orchestration
           server-lists: 127.0.0.1:2181
-      sharding:
-        default-database-strategy:
-          inline:
-            sharding-column: order_id
-            algorithm-expression: ds$->{order_id % 2}
-        tables:
-          t_order:
-            actual-data-nodes: ds$->{0..1}.t_order_$->{0..1}
-            table-strategy:
-              inline:
-                sharding-column: user_id
-                algorithm-expression: t_order_$->{user_id % 2}
-            key-generator-column-name: id
+#      sharding:
+#        default-database-strategy:
+#          inline:
+#            sharding-column: order_id
+#            algorithm-expression: ds$->{order_id % 2}
+#        tables:
+#          t_order:
+#            actual-data-nodes: ds$->{0..1}.t_order_$->{0..1}
+#            table-strategy:
+#              inline:
+#                sharding-column: user_id
+#                algorithm-expression: t_order_$->{user_id % 2}
+#            key-generator-column-name: id
+#        props:
+#          sql:
+#            show: true
+#        master-slave-rules:
+#          ds0:
+#            master-data-source-name: ds0
+#            slave-data-source-names: ds2
+#          ds1:
+#            master-data-source-name: ds1
+#            slave-data-source-names: ds3
