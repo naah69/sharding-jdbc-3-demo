@@ -50,14 +50,4 @@ sharding:
           ds1:
             master-data-source-name: ds1
             slave-data-source-names: ds3
-#      masterslave:
-#        name: ds_1
-#        master-data-source-name: ds0
-#        slave-data-source-names: ds2,ds3
-#        load-balance-algorithm-type: round_robin
-#      masterslave:
-#        name: ds_2
-#        master-data-source-name: ds1
-#        slave-data-source-names: ds3
-#        load-balance-algorithm-type: round_robin
 
