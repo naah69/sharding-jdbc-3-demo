@@ -75,6 +75,14 @@
             <version>${shardingsphere.version}</version>
         </dependency>
 
+
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>${HikariCP.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
         <!-- for spring boot -->
         <dependency>
             <groupId>io.shardingsphere</groupId>
@@ -84,12 +92,6 @@
 
 
 
-        <dependency>
-            <groupId>com.zaxxer</groupId>
-            <artifactId>HikariCP</artifactId>
-            <version>${HikariCP.version}</version>
-            <scope>compile</scope>
-        </dependency>
 
         <dependency>
             <groupId>com.alibaba</groupId>

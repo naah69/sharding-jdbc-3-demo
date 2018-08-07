@@ -20,12 +20,12 @@ public class HashCodePreciseShardingAlgorithm implements PreciseShardingAlgorith
     private final Logger logger = LoggerFactory.getLogger(HashCodePreciseShardingAlgorithm.class);
 
     @Override
-    public String doSharding(Collection<String> availableTargetNames, PreciseShardingValue<Long> shardingValue) {
-        logger.info("availableTargetNames:" + JSON.toJSONString(availableTargetNames) + ",preciseShardingValue:" + JSON.toJSONString(shardingValue));
-        //通过hashcode取模
-        int num= (shardingValue.getValue()+"").hashCode()%availableTargetNames.size();
-        String[] list = availableTargetNames.toArray(new String[availableTargetNames.size()]);
-        if(num<=availableTargetNames.size()){
+        public String doSharding(Collection<String> availableTargetNames, PreciseShardingValue<Long> shardingValue) {
+            logger.info("availableTargetNames:" + JSON.toJSONString(availableTargetNames) + ",preciseShardingValue:" + JSON.toJSONString(shardingValue));
+            //通过hashcode取模
+            int num= (shardingValue.getValue()+"").hashCode()%availableTargetNames.size();
+            String[] list = availableTargetNames.toArray(new String[availableTargetNames.size()]);
+            if(num<=availableTargetNames.size()){
             logger.info("return name:"+list[num]);
             return list[num];
         }

@@ -1,5 +1,6 @@
 sharding:
   jdbc:
+#   配置该数据源之后，无需配置springboot数据源
     datasource:
       names: ds0,ds1
       ds0:
@@ -16,17 +17,25 @@ sharding:
         username: fsccc
         password: 123456
 
+#   sharing-sphere配置
     config:
+#     分库分表
       sharding:
+#       默认库策略
         default-database-strategy:
           inline:
+#           分片键
             sharding-column: order_id
+#           算法表达式
             algorithm-expression: ds$->{order_id % 2}
+#       根据表，配置相应策略
         tables:
           t_order:
+#           实际数据节点
             actual-data-nodes: ds$->{0..1}.t_order_$->{0..1}
             table-strategy:
               inline:
                 sharding-column: user_id
                 algorithm-expression: t_order_$->{user_id % 2}
+#           主键生成列名
             key-generator-column-name: id
