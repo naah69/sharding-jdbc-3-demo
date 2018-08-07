@@ -1,11 +1,14 @@
 package shardingsphere.demo.mapper;
 
+import io.shardingsphere.core.api.algorithm.masterslave.MasterSlaveLoadBalanceAlgorithm;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 import shardingsphere.demo.entity.Order;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author fengsihang
@@ -41,3 +44,4 @@ public interface OrderMapper {
     List<Order> findByOrderId(Integer id);
 
 }
+

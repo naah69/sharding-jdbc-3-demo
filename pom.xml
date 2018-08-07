@@ -14,6 +14,7 @@
         <module>sharding-jdbc-complex</module>
         <module>sharding-jdbc-rw-splitting</module>
         <module>sharding-jdbc-rw-splitting-data-sharding</module>
+        <module>sharding-jdbc-rw-splitting-custom-balance</module>
         <module>sharding-jdbc-orchestration</module>
         <module>sharding-proxy-demo</module>
     </modules>
