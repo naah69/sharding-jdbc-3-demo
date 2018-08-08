@@ -31,7 +31,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <mybatis.version>1.3.2</mybatis.version>
-        <shardingsphere.version>3.0.0.M1</shardingsphere.version>
+        <shardingsphere.version>3.0.0.M2</shardingsphere.version>
         <HikariCP.version>2.7.8</HikariCP.version>
     </properties>
 

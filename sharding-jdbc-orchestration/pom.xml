@@ -28,12 +28,12 @@
         <dependency>
             <groupId>io.shardingsphere</groupId>
             <artifactId>sharding-jdbc-orchestration-spring-boot-starter</artifactId>
-            <version>3.0.0.M1</version>
+            <version>3.0.0.M2</version>
         </dependency>
         <dependency>
             <groupId>io.shardingsphere</groupId>
             <artifactId>sharding-jdbc-orchestration-spring-namespace</artifactId>
-            <version>3.0.0.M1</version>
+            <version>3.0.0.M2</version>
         </dependency>
 
     </dependencies>

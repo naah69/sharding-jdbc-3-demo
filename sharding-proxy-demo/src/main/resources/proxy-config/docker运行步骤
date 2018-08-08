@@ -5,3 +5,6 @@ docker pull shardingsphere/sharding-proxy
 docker run -d -v /root/conf/sharding-proxy:/opt/sharding-proxy/conf --name=sharding-proxy  -p 3307:3307 shardingsphere/sharding-proxy:latest
 
 
+/root/conf/sharding-proxy目录中存放着config.yaml文件
+
+本目录中的两个yaml文件需要改成config.yaml文件 覆盖进去

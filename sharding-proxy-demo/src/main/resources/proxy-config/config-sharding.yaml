@@ -1,18 +1,24 @@
+#本配置为分库分表+数据治理
 dataSources:
   ds0:
     url: jdbc:mysql://10.250.250.216:3306/ds0?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: fsccc
     password: 123456
-#these are not in DataSourceParameter
     autoCommit: true
     connectionTimeout: 30000
     idleTimeout: 60000
     maxLifetime: 1800000
     maximumPoolSize: 65
+
   ds1:
     url: jdbc:mysql://10.250.250.216:3306/ds1?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: fsccc
     password: 123456
+    autoCommit: true
+    connectionTimeout: 30000
+    idleTimeout: 60000
+    maxLifetime: 1800000
+    maximumPoolSize: 65
 
 shardingRule:
   tables:
@@ -20,20 +26,30 @@ shardingRule:
       actualDataNodes: ds${0..1}.t_order_${0..1}
       tableStrategy:
         inline:
-          shardingColumn: order_id
-          algorithmExpression: t_order_${order_id % 2}
+          shardingColumn: user_id
+          algorithmExpression: t_order_${user_id % 2}
       keyGeneratorColumnName: id
+
   defaultDatabaseStrategy:
     inline:
-      shardingColumn: user_id
-      algorithmExpression: ds${user_id % 2}
+      shardingColumn: order_id
+      algorithmExpression: ds${order_id % 2}
+
   defaultTableStrategy:
     none:
   defaultKeyGeneratorClassName: io.shardingsphere.core.keygen.DefaultKeyGenerator
-
   props:
+    proxy.mode: MEMORY_STRICTLY
+    proxy.transaction.mode: NONE
+    proxy.max.working.threads: 16
     sql.show: true
-# the under parameter is not in YamlProxyConfiguration
+
 proxyAuthority:
   username: root
   password: root
+orchestration:
+  name: orchestration_ds
+  overwrite: true
+  zookeeper:
+    namespace: sharding-proxy-demo
+    serverLists: 10.250.250.116:2181

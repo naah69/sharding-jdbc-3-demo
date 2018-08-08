@@ -1,0 +1,93 @@
+#本配置为读写分离+分库分表+数据治理
+dataSources:
+  ds0:
+    url: jdbc:mysql://10.250.250.116:3306/ds0?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: root
+    autoCommit: true
+    connectionTimeout: 30000
+    idleTimeout: 60000
+    maxLifetime: 1800000
+    maximumPoolSize: 65
+
+  ds1:
+    url: jdbc:mysql://10.250.250.116:3306/ds1?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: root
+    autoCommit: true
+    connectionTimeout: 30000
+    idleTimeout: 60000
+    maxLifetime: 1800000
+    maximumPoolSize: 65
+
+  ds2:
+    url: jdbc:mysql://10.250.250.106:3306/ds0?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: root
+    autoCommit: true
+    connectionTimeout: 30000
+    idleTimeout: 60000
+    maxLifetime: 1800000
+    maximumPoolSize: 65
+
+  ds3:
+    url: jdbc:mysql://10.250.250.106:3306/ds1?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: root
+    autoCommit: true
+    connectionTimeout: 30000
+    idleTimeout: 60000
+    maxLifetime: 1800000
+    maximumPoolSize: 65
+
+
+shardingRule:
+  tables:
+    t_order:
+      actualDataNodes: ds${0..1}.t_order_${0..1}
+      tableStrategy:
+        inline:
+          shardingColumn: user_id
+          algorithmExpression: t_order_${user_id % 2}
+      keyGeneratorColumnName: id
+
+  defaultDatabaseStrategy:
+    inline:
+      shardingColumn: order_id
+      algorithmExpression: ds${order_id % 2}
+
+  defaultTableStrategy:
+    none:
+  defaultKeyGeneratorClassName: io.shardingsphere.core.keygen.DefaultKeyGenerator
+
+  masterSlaveRules:
+    #该名称需要与主库数据源名称相同
+    ds0:
+      masterDataSourceName: ds0
+      slaveDataSourceNames:
+      - ds2
+      loadBalanceAlgorithmType: ROUND_ROBIN
+      configMap:
+        master-slave-key0: master-slave-value0
+    ds1:
+      masterDataSourceName: ds1
+      slaveDataSourceNames:
+      - ds3
+      loadBalanceAlgorithmType: ROUND_ROBIN
+      configMap:
+        master-slave-key1: master-slave-value1
+  props:
+    proxy.mode: MEMORY_STRICTLY
+    proxy.transaction.mode: NONE
+    proxy.max.working.threads: 16
+    sql.show: true
+
+proxyAuthority:
+  username: root
+  password: root
+orchestration:
+  name: orchestration_ds
+  overwrite: true
+  zookeeper:
+    namespace: sharding-proxy-demo
+    serverLists: 10.250.250.116:2181
