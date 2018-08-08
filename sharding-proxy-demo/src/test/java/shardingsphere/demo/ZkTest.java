@@ -53,7 +53,10 @@ public class ZkTest {
     public void testSetChild() throws KeeperException, InterruptedException {
         byte[] data = zkClient.getData("/sharding-proxy-demo/orchestration_ds/config/proxy/rule", true, new Stat());
         String yml = new String(data);
-        yml = yml.replaceAll("algorithmExpression: ds0","algorithmExpression: ds\\$\\{order_id % 2}");
+        //只向ds0插入数据
+        yml = yml.replaceAll("algorithmExpression: ds\\$\\{order_id % 2}","algorithmExpression: ds0");
+        //回复分片
+//        yml = yml.replaceAll("algorithmExpression: ds0","algorithmExpression: ds\\$\\{order_id % 2}");
         Stat stat = zkClient.setData("/sharding-proxy-demo/orchestration_ds/config/proxy/rule", yml.getBytes(), -1);
         System.out.println(stat);
 

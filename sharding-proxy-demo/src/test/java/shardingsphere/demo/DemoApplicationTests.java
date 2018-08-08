@@ -30,7 +30,7 @@ public class DemoApplicationTests {
     public void add() {
         Order order = new Order();
         for (int i =0; i <10; i++) {
-            for (int j = 0; j < 1; j++) {
+            for (int j = 0; j < 10; j++) {
                 order.setUserId(i);
                 order.setOrderId(j);
                 orderMapper.insert(order);
