@@ -23,19 +23,31 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+            <version>3.4.9</version>
+
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>${mybatis.version}</version>
         </dependency>
-        <dependency>
-            <groupId>io.shardingsphere</groupId>
-            <artifactId>sharding-core</artifactId>
-            <version>${shardingsphere.version}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>io.shardingsphere</groupId>-->
+            <!--<artifactId>sharding-core</artifactId>-->
+            <!--<version>${shardingsphere.version}</version>-->
+        <!--</dependency>-->
         <!--<dependency>-->
             <!--<groupId>com.zaxxer</groupId>-->
             <!--<artifactId>HikariCP-java7</artifactId>-->

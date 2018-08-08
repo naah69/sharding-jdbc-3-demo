@@ -19,7 +19,7 @@ spring:
       url: jdbc:mysql://10.250.250.116:3307/sharding_db
       driver-class-name: com.mysql.jdbc.Driver
       username: root
-      password:
+      password: root
       # 下面为连接池的补充设置，应用到上面所有数据源中
       initial-size: 5
       # 初始化大小，最小，最大

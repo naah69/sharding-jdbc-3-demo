@@ -29,8 +29,8 @@ public class DemoApplicationTests {
     @Test
     public void add() {
         Order order = new Order();
-        for (int i =0; i <=20; i++) {
-            for (int j = 0; j <= 30; j++) {
+        for (int i =0; i <10; i++) {
+            for (int j = 0; j < 1; j++) {
                 order.setUserId(i);
                 order.setOrderId(j);
                 orderMapper.insert(order);
@@ -49,6 +49,7 @@ public class DemoApplicationTests {
         }
 
     }
+
 
 
 
